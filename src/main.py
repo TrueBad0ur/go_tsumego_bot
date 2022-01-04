@@ -10,16 +10,47 @@ def button(update: Update, context: CallbackContext):
     callback_logging(update)
     query = update.callback_query
     query.answer()
-    #update.message.reply_text(query.data)
+
     query.edit_message_text(query.data)
     if query.data == "WEIQI 1000 PROBLEMS":
-        keyboard = [[InlineKeyboardButton("CGP 1.1 - Making Life", callback_data='CGP 1.1 - Making Life'), InlineKeyboardButton("CGP 1.2 - Destroying Eyes", callback_data='CGP 1.2 - Destroying Eyes')]]
+        keyboard = [[InlineKeyboardButton("CGP 1.1 - Making Life", callback_data='CGP 1.1 - Making Life')], [InlineKeyboardButton("CGP 1.2 - Destroying Eyes", callback_data='CGP 1.2 - Destroying Eyes')], [InlineKeyboardButton("CGP 1.3 - Killing Eyes", callback_data='CGP 1.3 - Killing Eyes')], \
+                    [InlineKeyboardButton("CGP 1.4 - Semeai", callback_data='CGP 1.4 - Semeai')], [InlineKeyboardButton("CGP 1.5 - Seki", callback_data='CGP 1.5 - Seki')], [InlineKeyboardButton("CGP 1.6 - Vital Point", callback_data='CGP 1.6 - Vital Point')]]
         reply_markup = InlineKeyboardMarkup(keyboard)
         update.callback_query.message.reply_text('Please select the lesson from the pack', reply_markup=reply_markup)
-    elif query.data == "CGP 1.1 - Making Life":
-        print("CGP 1.1 - Making Life")
-    elif query.data == "CGP 1.2 - Destroying Eyes":
-        print("CGP 1.2 - Destroying Eyes")
+    elif query.data == "CGP 1.1 - Making Life" or \
+         query.data == "CGP 1.2 - Destroying Eyes" or \
+         query.data == "CGP 1.3 - Killing Eyes" or \
+         query.data == "CGP 1.4 - Semeai" or \
+         query.data == "CGP 1.5 - Seki" or \
+         query.data == "CGP 1.6 - Vital Point" or \
+         query.data == "CGP 1.7 - Go Theory" or \
+         query.data == "CGP 1.8 - Common Corner Position" or \
+         query.data == "CGP 1.9 - Making Ko" or \
+         query.data == "CGP 1.10 - Interesting Unusual Problem" or \
+         query.data == "CGP 2.1 - Ladder" or \
+         query.data == "CGP 2.2 - Cut" or \
+         query.data == "CGP 2.3 - Net" or \
+         query.data == "CGP 2.4 - Hane" or \
+         query.data == "CGP 2.5 - Wedge" or \
+         query.data == "CGP 2.6 - Diagonal" or \
+         query.data == "CGP 2.7 - Bridge Under" or \
+         query.data == "CGP 2.7 - Bridge Under" or \
+         query.data == "CGP 2.9 - Pincer & Clamp" or \
+         query.data == "CGP 2.10 - Descent and Stand" or \
+         query.data == "CGP 2.11 - Vital Point 2" or \
+         query.data == "CGP 2.12 - Throw in" or \
+         query.data == "CGP 2.13 - Two-stone Edge Squeeze" or \
+         query.data == "CGP 2.14 - Double Shortage of Liberties" or \
+         query.data == "CGP 2.15 - Under the Stones":
+        problem = random.choice(os.listdir("../sgfs/WEIQI 1000 PROBLEMS/" + query.data)).split(".")
+        print(query.data + " : " + ''.join(problem))
+        #print('../sgfutils-0.25/sgftopng -nonrs ' + '"' + '../sgfs/WEIQI 1000 PROBLEMS/' + query.data + '/' + problem[0] + '.png' + '"' + ' < ' + '"' + '../sgfs/WEIQI 1000 PROBLEMS/' + query.data + '/' + problem[0] + '.sgf' + '"')
+        os.system('../sgfutils-0.25/sgftopng -nonrs ' + '"' + '../sgfs/WEIQI 1000 PROBLEMS/' + query.data + '/' + problem[0] + '.png' + '"' + ' < ' + '"' + '../sgfs/WEIQI 1000 PROBLEMS/' + query.data + '/' + problem[0] + '.sgf' + '"')
+
+        photo = open("../sgfs/WEIQI 1000 PROBLEMS/" + query.data + "/" + problem[0] + ".png", 'rb')
+        update.callback_query.message.reply_photo(photo)
+
+
 
 def get_list_of_packs(update: Update, context: CallbackContext):
     logging(update)
