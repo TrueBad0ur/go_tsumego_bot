@@ -7,22 +7,37 @@ import os, random
 # context.
 
 def button(update: Update, context: CallbackContext):
+    callback_logging(update)
+    #print(update.callback_query.from_user)
     query = update.callback_query
     query.answer()
     #update.message.reply_text(query.data)
     query.edit_message_text(query.data)
+    if query.data == "WEIQI 1000 PROBLEMS":
+        print(1)
+    #    keyboard = [[InlineKeyboardButton("CGP 1.1 - Making Life", callback_data='CGP 1.1 - Making Life'), InlineKeyboardButton("CGP 1.2 - Destroying Eyes", callback_data='CGP 1.2 - Destroying Eyes')]]
+    #    reply_markup = InlineKeyboardMarkup(keyboard)
+    #    update.message.reply_text('Please select the lesson from the pack', reply_markup=reply_markup)
+    #elif query.data == "CGP 1.1 - Making Life":
+    #    print("CGP 1.1 - Making Life")
+    #elif query.data == "CGP 1.2 - Destroying Eyes":
+    #    print("CGP 1.2 - Destroying Eyes")
 
 def get_list_of_packs(update: Update, context: CallbackContext):
     logging(update)
-    keyboard = [[InlineKeyboardButton("Hackerearth", callback_data='1'), InlineKeyboardButton("Hackerrank", callback_data='2')]]
+    keyboard = [[InlineKeyboardButton("WEIQI 1000 PROBLEMS", callback_data='WEIQI 1000 PROBLEMS'), InlineKeyboardButton("smth else", callback_data='smth else')]]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    update.message.reply_text('please select the judge or select all for showing all',reply_markup=reply_markup)
+    update.message.reply_text('Please select the problems pack',reply_markup=reply_markup)
 
 def check_admin_id(update: Update):
     pass
 
+def callback_logging(update: Update):
+    print("{} at {}: {}".format(update.callback_query.from_user.username, update.callback_query.message.date, update.callback_query.data))
+
 def logging(update: Update):
-    print("{} at {}: {}".format(update.message.from_user.username, update.message.date , update.message.text))
+    pass
+    #print("{} at {}: {}".format(update.message.from_user.username, update.message.date , update.message.text))
 
 def start(update: Update, context: CallbackContext):
     logging(update)
@@ -69,7 +84,7 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("get_problem", get_problem))
     dispatcher.add_handler(CommandHandler("get_answer", get_answer))
     dispatcher.add_handler(CommandHandler("get_list_of_packs", get_list_of_packs))
-    updater.dispatcher.add_handler(CallbackQueryHandler(button))
+    updater.dispatcher.add_handler(CallbackQueryHandler(callback=button))
 
     # on non command i.e message - echo the message on Telegram
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
