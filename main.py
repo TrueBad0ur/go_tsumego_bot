@@ -27,10 +27,16 @@ def help_command(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('Help!')
 
 def get_problem(update: Update, context: CallbackContext) -> None:
-    chosen_file = random.choice(os.listdir("./sgfs/"))[:-4]
-    command = "./sgfutils-0.25/sgftopng ./parsed_sgfs/" + chosen_file + ".png < ./sgfs/" + chosen_file + ".sgf"
-    os.system(command)
-    update.message.reply_photo("./parsed_sgfs/" + chosen_file + ".png")
+    global chosen_file
+    chosen_file = random.choice(os.listdir("./sgfs/parsed_incomplete/"))
+    #command = "./sgfutils-0.25/sgftopng ./parsed_sgfs/" + chosen_file + ".png < ./sgfs/" + chosen_file + ".sgf"
+    #os.system(command)
+    photo = open("./sgfs/parsed_incomplete/" + chosen_file, 'rb')
+    update.message.reply_photo(photo)
+
+def get_answer(update: Update, context: CallbackContext) -> None:
+    photo = open("./sgfs/parsed_right_answers/" + chosen_file, 'rb')
+    update.message.reply_photo(photo)
 
 def echo(update: Update, context: CallbackContext) -> None:
     """Echo the user message."""
@@ -49,6 +55,7 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", help_command))
     dispatcher.add_handler(CommandHandler("get_problem", get_problem))
+    dispatcher.add_handler(CommandHandler("get_answer", get_answer))
 
     # on non command i.e message - echo the message on Telegram
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
