@@ -43,9 +43,10 @@ def button(update: Update, context: CallbackContext):
          query.data == "CGP 2.14 - Double Shortage of Liberties" or \
          query.data == "CGP 2.15 - Under the Stones":
         problem = random.choice(os.listdir("../sgfs/WEIQI 1000 PROBLEMS/" + query.data)).split(".")
+        #print("{} {} {} at {}: {}".format(update.callback_query.from_user.username, update.callback_query.from_user.first_name, update.callback_query.from_user.id, update.callback_query.message.date, update.callback_query.data))
         print(query.data + " : " + ''.join(problem))
         #print('../sgfutils-0.25/sgftopng -nonrs ' + '"' + '../sgfs/WEIQI 1000 PROBLEMS/' + query.data + '/' + problem[0] + '.png' + '"' + ' < ' + '"' + '../sgfs/WEIQI 1000 PROBLEMS/' + query.data + '/' + problem[0] + '.sgf' + '"')
-        os.system('../sgfutils-0.25/sgftopng -nonrs ' + '"' + '../sgfs/WEIQI 1000 PROBLEMS/' + query.data + '/' + problem[0] + '.png' + '"' + ' < ' + '"' + '../sgfs/WEIQI 1000 PROBLEMS/' + query.data + '/' + problem[0] + '.sgf' + '"')
+        os.system('../sgfutils-0.25/sgftopng -coord -nonrs ' + '"' + '../sgfs/WEIQI 1000 PROBLEMS/' + query.data + '/' + problem[0] + '.png' + '"' + ' < ' + '"' + '../sgfs/WEIQI 1000 PROBLEMS/' + query.data + '/' + problem[0] + '.sgf' + '"')
 
         photo = open("../sgfs/WEIQI 1000 PROBLEMS/" + query.data + "/" + problem[0] + ".png", 'rb')
         update.callback_query.message.reply_photo(photo)
