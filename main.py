@@ -3,6 +3,7 @@ import logging
 from telegram import Update, ForceReply
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 from bot_token import token_var
+import os, random
 
 # Enable logging
 logging.basicConfig(
@@ -26,8 +27,9 @@ def help_command(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('Help!')
 
 def get_problem(update: Update, context: CallbackContext) -> None:
-    
-
+    chosen_file = random.choice(os.listdir("./sgfs/"))[:-4]
+    command = "./sgfutils-0.25/sgftopng ./parsed_sgfs/" + chosen_file + ".png < ./sgfs/" + chosen_file + ".sgf"
+    os.system()
 
 def echo(update: Update, context: CallbackContext) -> None:
     """Echo the user message."""
