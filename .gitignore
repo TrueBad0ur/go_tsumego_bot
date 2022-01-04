@@ -1,4 +1,5 @@
 bot_token.py
+./sgfs/*.png
 
 __pycache__/
 *.py[cod]
