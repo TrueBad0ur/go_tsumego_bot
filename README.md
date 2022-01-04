@@ -1,5 +1,8 @@
 # go_tsumego_bot
 
+Problems are token from:
+[here 1](https://www.reddit.com/r/baduk/comments/haixlq/go_materials_for_lifetime_study/)
+
 1) Currently if you move 5 times as white, you see AW[..][..][..]... in sgf
    Now it only parses typical way of moving when you'll see AW[..]AB[..]AW[..]AB[..]
 
