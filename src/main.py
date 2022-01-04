@@ -8,20 +8,18 @@ import os, random
 
 def button(update: Update, context: CallbackContext):
     callback_logging(update)
-    #print(update.callback_query.from_user)
     query = update.callback_query
     query.answer()
     #update.message.reply_text(query.data)
     query.edit_message_text(query.data)
     if query.data == "WEIQI 1000 PROBLEMS":
-        print(1)
-    #    keyboard = [[InlineKeyboardButton("CGP 1.1 - Making Life", callback_data='CGP 1.1 - Making Life'), InlineKeyboardButton("CGP 1.2 - Destroying Eyes", callback_data='CGP 1.2 - Destroying Eyes')]]
-    #    reply_markup = InlineKeyboardMarkup(keyboard)
-    #    update.message.reply_text('Please select the lesson from the pack', reply_markup=reply_markup)
-    #elif query.data == "CGP 1.1 - Making Life":
-    #    print("CGP 1.1 - Making Life")
-    #elif query.data == "CGP 1.2 - Destroying Eyes":
-    #    print("CGP 1.2 - Destroying Eyes")
+        keyboard = [[InlineKeyboardButton("CGP 1.1 - Making Life", callback_data='CGP 1.1 - Making Life'), InlineKeyboardButton("CGP 1.2 - Destroying Eyes", callback_data='CGP 1.2 - Destroying Eyes')]]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        update.callback_query.message.reply_text('Please select the lesson from the pack', reply_markup=reply_markup)
+    elif query.data == "CGP 1.1 - Making Life":
+        print("CGP 1.1 - Making Life")
+    elif query.data == "CGP 1.2 - Destroying Eyes":
+        print("CGP 1.2 - Destroying Eyes")
 
 def get_list_of_packs(update: Update, context: CallbackContext):
     logging(update)
@@ -33,11 +31,10 @@ def check_admin_id(update: Update):
     pass
 
 def callback_logging(update: Update):
-    print("{} at {}: {}".format(update.callback_query.from_user.username, update.callback_query.message.date, update.callback_query.data))
+    print("{} {} {} at {}: {}".format(update.callback_query.from_user.username, update.callback_query.from_user.first_name, update.callback_query.from_user.id, update.callback_query.message.date, update.callback_query.data))
 
 def logging(update: Update):
-    pass
-    #print("{} at {}: {}".format(update.message.from_user.username, update.message.date , update.message.text))
+    print("{} {} {} at {}: {}".format(update.message.from_user.username, update.message.from_user.first_name, update.message.from_user.id, update.message.date , update.message.text))
 
 def start(update: Update, context: CallbackContext):
     logging(update)
