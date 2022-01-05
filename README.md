@@ -4,6 +4,11 @@ Problems are taken from:
 
 [here 1](https://www.reddit.com/r/baduk/comments/haixlq/go_materials_for_lifetime_study/)
 
+Manuals:
+
+[python-telegram-bot](https://python-telegram-bot.readthedocs.io/en/stable/)
+[python-telegram-bot examples](https://github.com/python-telegram-bot/python-telegram-bot/tree/master/examples)
+
 1) Currently if you move 5 times as white, you see AW[..][..][..]... in sgf
    Now it only parses typical way of moving when you'll see AW[..]AB[..]AW[..]AB[..]
 
