@@ -10,6 +10,12 @@ Manuals:
 
 [python-telegram-bot examples](https://github.com/python-telegram-bot/python-telegram-bot/tree/master/examples)
 
+[sgfutils/sgftopng](https://homepages.cwi.nl/~aeb/go/sgfutils/html/sgftopng.html)
+
+Sources:
+
+[sgfutils](https://homepages.cwi.nl/~aeb/go/sgfutils/old/)
+
 1) Currently if you move 5 times as white, you see AW[..][..][..]... in sgf
    Now it only parses typical way of moving when you'll see AW[..]AB[..]AW[..]AB[..]
 
